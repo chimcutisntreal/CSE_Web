@@ -112,9 +112,12 @@ $filmNull=$castNull=$genreNull=$directorNull=$reviewNull=NULL;
   integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60="
   crossorigin="anonymous"></script>
 <!-- Include JS file. -->
+<
+<script src="js/bootstrap.min.js"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.13.1/css/bootstrap-select.css" />
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.13.1/js/bootstrap-select.min.js"></script>
 
-	
-	</head>
+</head>
 	<body>
 		<nav class="navbar navbar-custom navbar-fixed-top" role="navigation">
 			<div class="container-fluid">
@@ -202,8 +205,8 @@ $filmNull=$castNull=$genreNull=$directorNull=$reviewNull=NULL;
 				<li><a href="index.php"><em class="fa fa-dashboard">&nbsp;</em> Dashboard</a></li>
 				<li><a href="widgets.php"><em class="fa fa-calendar">&nbsp;</em> Widgets</a></li>
 				<li class="active"><a href="review.php"><img src="https://img.icons8.com/ios/15/000000/video-editing.png"> Post Review</a></li>
-				<li><a href="casts.php"><img src="https://img.icons8.com/ios/15/000000/school-director.png"> Casts</a></li>
-				<li><a href="directors.php"><img src="https://img.icons8.com/ios/15/000000/clapperboard.png"> Directors</a></li>
+				<li><a href="genre.php"><img src="https://img.icons8.com/ios/15/000000/school-director.png"> Genre</a></li>
+				
 				<li><a href="users.php"><img src="https://img.icons8.com/ios/15/000000/user-group-man-man.png"> Users</a></li>
 				<!-- <li class="parent "><a data-toggle="collapse" href="#sub-item-1">
 				<em class="fa fa-navicon">&nbsp;</em> Multilevel <span data-toggle="collapse" href="#sub-item-1" class="icon pull-right"><em class="fa fa-plus"></em></span>
@@ -248,27 +251,20 @@ $filmNull=$castNull=$genreNull=$directorNull=$reviewNull=NULL;
 						<div class="panel-heading">Film Info</div>
 						<div class=panel-body>
 							<div class="row">
-								<div class="col-md-6">
+								<div class="col-md-8">
 									<form action="review.php" method="POST">
 										<div class="form-group">
 											<input type="text" class="border-input form-control1" placeholder="Film Name" name="filmName">
 										</div>
-										<div class="form-group">
-											<input class="border-input form-control1" placeholder="Casts" name="casts">
-										</div>
+										<select class="selectpicker" multiple data-live-search="true">
+											<option>Mustard</option>
+											<option>Ketchup</option>
+											<option>Relish</option>
+										</select>									
+									</form>	
 										
-									</form>
 								</div>
-								<div class="col-md-6">
-									<form action="review.php" method="POST">
-										<div class="form-group">
-											<input class="border-input form-control1" placeholder="Director" name="director">
-										</div>
-										<div class="form-group">
-											<input class="border-input form-control1" placeholder="Genre" name="genre">
-										</div>
-									</form>
-								</div>
+
 							</div>
 						</div>
 						<div class="panel-heading">Post Review</div>
@@ -330,7 +326,7 @@ $filmNull=$castNull=$genreNull=$directorNull=$reviewNull=NULL;
                     echo"<td><a href=''>Edit</a></td>";
                     
 
-                    echo"<td><a href='delete.php?idReview=$dataArray[ID_FILM]' onclick = 'return show_confirm();'>Delete</a></td>";
+                    echo"<td><a href='delete_element/delete_review.php?id=$dataArray[ID_FILM]' onclick = 'return show_confirm();'>Delete</a></td>";
                 echo "</tr>";
             }
             
@@ -363,17 +359,28 @@ $filmNull=$castNull=$genreNull=$directorNull=$reviewNull=NULL;
 				})
 			});
 		</script>
+
+		<!-- <script>
+			// Material Select Initialization
+			$(document).ready(function() {
+			$('.mdb-select').materialSelect();
+			});
+		</script> -->
 		<!-- <script type='text/javascript' src='https://cdn.jsdelivr.net/npm/froala-editor@2.9.1/js/froala_editor.min.js'></script> -->
-		<script src="froala_editor/js/froala_editor.pkgd.min.js"></script>
+		<script>
+			// Material Select Initialization
+			$('select').selectpicker();
+		</script>
 		
-		<script src="js/bootstrap.min.js"></script>
+		<script src="froala_editor/js/froala_editor.pkgd.min.js"></script>
+	
 		<script src="js/chart.min.js"></script>
 		<script src="js/chart-data.js"></script>
 		<script src="js/easypiechart.js"></script>
 		<script src="js/easypiechart-data.js"></script>
 		<script src="js/bootstrap-datepicker.js"></script>
 		<script src="js/custom.js"></script>
-		<script src="preview_image.js"></script>
+		
 	</body>
 
 </html>

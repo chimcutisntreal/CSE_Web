@@ -202,7 +202,7 @@
                                 <button class="btn btn--radius-2 btn--green" type="submit" name="btnRegister">Register</button>
                             </div>
                             <div class="subtxt">
-                                <p>Have already an account? <a class="txt1" style="text-decoration: none" href="../../../ChiChin/Login/Login/login.php">Sign-in
+                                <p>Have already an account? <a class="txt1" style="text-decoration: none" href="../../../Sources/Login/Login/login.php">Sign-in
                                         here</a></p>
                             </div>
                         </form>

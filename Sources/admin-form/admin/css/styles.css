@@ -66,6 +66,9 @@ input.form-control {
   font-size:20;
   border:1px solid #ccc;
 }
+.pressOnAdd{
+  font-family: "Open Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", Helvetica, Arial, sans-serif; 
+}
 /* .border-textarea{
   border: none;
   border:1px solid gray;

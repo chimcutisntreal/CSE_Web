@@ -61,9 +61,9 @@
                                 echo "<div class='text-success'><h4 class='wel'><p class='font-weight-bold'>Welcome ".$_SESSION["username"]."</p></h4></div> <a href='logout.php'><button type='button' class='btn btn-success'>
                                 Logout</button></a>";
                             } else {
-                                echo "<a href='../ChiChin/Login/Login/login.php'><button type='button' class='btn btn-success'>
+                                echo "<a href='../Sources/Login/Login/login.php'><button type='button' class='btn btn-success'>
                                 Sign In </button></a>";
-                                echo "<a href='../ChiChin/Signup/Signup/signup.php'><button type='button' class='btn btn-success'>
+                                echo "<a href='../Sources/Signup/Signup/signup.php'><button type='button' class='btn btn-success'>
                                 Sign Up</button></a>";
                             }
                            

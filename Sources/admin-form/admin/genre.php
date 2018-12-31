@@ -6,22 +6,51 @@
 		header("location:../../homepage.php");
 		exit();
 	}
+
+	
+	//Mo ket noi csdl
+	$conn = mysqli_connect('localhost','root','','chichin_test');
+	if(!$conn) {
+		die('connection failed');
+	}
+	//Truy van
+	$getData = "SELECT ID_G,Genre FROM genre";
+	$result = mysqli_query($conn,$getData);
+	
+	if(isset($_POST['getGenre'])) {
+		
+		$genre = $_POST['getGenre'];
+		
+		$insertData = "INSERT INTO genre(Genre) VALUES('$genre')";
+		$insertDone = mysqli_query($conn,$insertData);
+		echo $genre;
+		
+	}
+	mysqli_close($conn);
 ?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Users</title>
+    <title>Genre</title>
     <link href="css/bootstrap.min.css" rel="stylesheet">
     <link href="css/datepicker3.css" rel="stylesheet">
     <link href="css/font-awesome.min.css" rel="stylesheet">
 	<link href="css/styles.css" rel="stylesheet">
-
+	<script src="sweetalert2/package/dist/sweetalert2.all.min.js"></script>
+	<link rel="stylesheet" href="sweetalert2/package/dist/sweetalert2.css">
 		<!--Custom Font-->
 	<link href="https://fonts.googleapis.com/css?family=Montserrat:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
-    <script language="javascript">
+	<script
+		src="https://code.jquery.com/jquery-3.3.1.js"
+		integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60="
+		crossorigin="anonymous">
+	</script>
+ 
+ <script language="javascript">
         function show_confirm() {
             if(confirm("Are you sure?"))
             {
@@ -120,9 +149,8 @@
 				<li><a href="index.php"><em class="fa fa-dashboard">&nbsp;</em> Dashboard</a></li>
 				<li><a href="widgets.php"><em class="fa fa-calendar">&nbsp;</em> Widgets</a></li>
 				<li><a href="review.php"><img src="https://img.icons8.com/ios/15/000000/video-editing.png"> Post Review</a></li>
-				<li><a href="genre.php"><img src="https://img.icons8.com/ios/15/000000/school-director.png"> Genre</a></li>
-                
-                <li class="active"><a href="users.php"><img src="https://img.icons8.com/ios/15/000000/user-group-man-man.png"> Users</a></li>
+				<li class="active"><a href="genre.php"><img src="https://img.icons8.com/ios/15/000000/school-director.png"> Genre</a></li>
+                <li><a href="users.php"><img src="https://img.icons8.com/ios/15/000000/user-group-man-man.png"> Users</a></li>
 
 				<li><a href="../../logout.php"><em class="fa fa-power-off">&nbsp;</em> Logout</a></li>
 			</ul>
@@ -135,82 +163,84 @@
 					<li><a href="../../homepage.php">
 							<em class="fa fa-home"></em>
 						</a></li>
-					<li class="active">Users</li>
+					<li class="active">Genre</li>
 				</ol>
 			</div>
 			<!--/.row-->
 
 			<div class="row">
-				<div class="col-lg-12">
-					<h1 class="page-header">Users</h1>
-				</div>
+				
 			</div>
 			<!--/.row-->
             <div class="row">
 				<div class="col-md-12">
 					<div class="panel panel-default ">
 						<div class="panel-heading">
-							Users Table
+							Genre Table
 							</div>
 						<div class="panel-body timeline-container">
 							<ul class="timeline">
+								
 								<table>
 									<tr>
-										<th>ID</th>
-										<th>UserName</th>
-										<th>Email</th>
-										<th>JoinDate</th>
-										<th>PhoneNumber</th>
-										<th>Favorite</th>
-										<th>Status</th>
-										<th>Level</th>
-										<th>Delete</th>
+										<th style="width:200px;">ID_Genre</th>
+										<th> Genre</th>
+										<th style="width:200px;">Edit</th>
+										<th style="width:200px;">Delete</th>
+										<th style="width:50px;border:none;"><button formaction="genre.php" formmethod="POST" name="pressOnAdd" id="btnAdd" style="border:none;background: transparent;"><img src="https://img.icons8.com/ios/60/000000/plus.png"></button></th>
 									</tr>
-			<tr>
-            <?php
-            //Mo ket noi csdl
-            $conn = mysqli_connect('localhost','root','','chichin_test');
-            if(!$conn) {
-                die('connection failed');
-            }
-            //Truy van
-            $getData = "SELECT ID_User,User_Name,Email,Join_Date,Phone_Number,Fav,Status,Level FROM users";
-            $result = mysqli_query($conn,$getData);
-            while($dataArray = mysqli_fetch_assoc($result))
-            {
-                echo "<tr>";
-                    echo"<td>$dataArray[ID_User]</td>";
-                    echo"<td>$dataArray[User_Name]</td>";
-                    echo"<td>$dataArray[Email]</td>";
-                    echo"<td>$dataArray[Join_Date]</td>";
-                    echo"<td>$dataArray[Phone_Number]</td>";
-                    echo"<td>$dataArray[Fav]</td>";
-                    if ($dataArray['Status'] == 0) {
-                        echo "<td>Not Activated</td>";
-                    } else {
-                        echo "<td>Activated</td>";
-                    }
-
-                    if ($dataArray['Level'] == 1) {
-                        echo"<td>Member</td>";
-                    }
-                    if ($dataArray['Level'] == 2) {
-                        echo"<td>VIP Member</td>";
-                    }  if ($dataArray['Level'] == 3) {
-                        echo"<td>Admin</td>";
-                    }
-                    echo"<td><a href='delete_element/delete_user.php?id=$dataArray[ID_User]' onclick = 'return show_confirm();'>Delete</a></td>";
-                echo "</tr>";
-            }
-            
-            mysqli_close($conn);
-        ?>
-								</tr>
+									<tr>
+										<?php
+										while($dataArray = mysqli_fetch_assoc($result))
+										{
+											echo "<tr>";
+												echo"<td>$dataArray[ID_G]</td>";
+												echo"<td>$dataArray[Genre]</td>";
+												echo"<td><a href='#'>Edit</a></td>";
+												echo"<td><a href='delete_element/delete_genre.php?id=$dataArray[ID_G]' onclick = 'return show_confirm();'>Delete</a></td>";
+											echo "</tr>";
+										} 
+									
+										?>
+									</tr>
 								</table>
+								
+								
 							</ul>
 						</div>
 					</div>
 				</div>
 			</div>
+
+		<script>
+			$(document).ready(function(){
+				$("#btnAdd").click(function(){
+					(async function getText () {
+				const {value: text} = await Swal({
+				input: 'text',
+				inputPlaceholder: 'Enter genre',
+				showCancelButton: true
+				})
+
+				if (text) {
+					Swal("Add "+text+ " successfull!!!")
+					
+					var getG = text;
+					$.ajax({
+						method:'POST',
+						url:'genre.php',
+						data: {getGenre:getG},
+						success: function(data){
+						
+						}
+					})
+				}
+				})();
+			
+				});
+			
+			});
+		</script>
+			
 </body>
 </html>
