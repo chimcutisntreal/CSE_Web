@@ -18,24 +18,30 @@
          }
     //Xu ly dang nhap
         if($inputEmail && $inputPass) {
-				$conn = mysqli_connect('localhost','root','','chichin_test');
+				$conn = mysqli_connect('localhost','root','','chinthereview');
 				if(!$conn) {
 					die('connection failed');
-				}
+				}	
                 $insertUser = "SELECT * FROM  users WHERE Email='$inputEmail' AND Pass='$inputPass'";
                 $result = mysqli_query($conn,$insertUser);
                 if (mysqli_num_rows($result)==1) {
-                    $data=mysqli_fetch_assoc($result);
-                    $_SESSION["Level"]=$data["Level"];
-                    if ($_SESSION["Level"]==1 || $_SESSION["Level"]==2 ) {
-						$_SESSION["username"] = $data["User_Name"];
-                        header("location:../../homepage.php");
-                        exit();
-                    } else {
-                        $_SESSION["ID_Admin"]=$data["ID_User"];
-                        header("location:../../admin-form/admin/index.php");
-                        exit();
-                     }
+					$data=mysqli_fetch_assoc($result);
+					$status = $data["Status"];
+					if($status == 0) {
+						echo "<script>alert('chua kich hoat')</script>";
+					} else {
+						$_SESSION["Level"]=$data["Level"];
+						if ($_SESSION["Level"]==1 || $_SESSION["Level"]==2 ) {
+							$_SESSION["username"] = $data["User_Name"];
+							header("location:../../homepage.php");
+							exit();
+						} else {
+							$_SESSION["Admin"]=$data["User_Name"];
+							header("location:../../admin-form/admin/index.php");
+							exit();
+						}
+					}
+                   
         
                 } else {
                     $errorLogin = "Wrong Email or Password. Please try again";

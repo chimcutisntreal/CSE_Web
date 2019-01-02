@@ -148,7 +148,7 @@ input.form-control {
   height: 34px; }
 
 .input-group-btn .btn {
-  height: 46px; }
+  height: 70px; }
 
 .form-control:focus {
   border: 1px solid #30a5ff;
@@ -288,7 +288,8 @@ a.btn:active, button:active {
 .btn-default, .btn-default:hover, .btn-default:focus, .btn-default:active, .btn-default.active, .open > .dropdown-toggle.btn-default, .btn-default.disabled, .btn-default[disabled], fieldset[disabled] .btn-default, .btn-default.disabled:hover, .btn-default[disabled]:hover, fieldset[disabled] .btn-default:hover, .btn-default.disabled:focus, .btn-default[disabled]:focus, fieldset[disabled] .btn-default:focus, .btn-default.disabled:active, .btn-default[disabled]:active, fieldset[disabled] .btn-default:active, .btn-default.disabled.active, .btn-default[disabled].active, fieldset[disabled] .btn-default.active {
   background-color: #e9ecf2;
   border-color: #e9ecf2;
-  color: #1b3548; }
+  color: #1b3548;
+  border-radius: 20px; }
 
 .btn-primary, .btn-primary:hover, .btn-primary:focus, .btn-primary:active, .btn-primary.active, .open > .dropdown-toggle.btn-primary, .btn-primary.disabled, .btn-primary[disabled], fieldset[disabled] .btn-primary, .btn-primary.disabled:hover, .btn-primary[disabled]:hover, fieldset[disabled] .btn-primary:hover, .btn-primary.disabled:focus, .btn-primary[disabled]:focus, fieldset[disabled] .btn-primary:focus, .btn-primary.disabled:active, .btn-primary[disabled]:active, fieldset[disabled] .btn-primary:active, .btn-primary.disabled.active, .btn-primary[disabled].active, fieldset[disabled] .btn-primary.active {
   background-color: #30a5ff;
@@ -300,6 +301,7 @@ a.btn:active, button:active {
   font-weight: bold;
   font-size:35px;
   border-radius: 20px;
+  margin-top:10px;
  }
 .btn-block{
   width:40%;
@@ -1149,3 +1151,31 @@ p.back-link {
   tr:nth-child(even) {
     background-color: #fff;
   }
+  /* Preview Image */
+  .image-preview-input {
+    position: relative;
+    overflow: hidden;
+    margin: 0px;    
+    color: #333;
+    background-color: #fff;
+    border-color: #ccc;   
+    border-radius: 20px; 
+    
+}
+.image-preview-input input[type=file] {
+	position: absolute;
+	top: 0;
+	right: 0;
+	margin: 0;
+	padding: 0;
+	font-size: 40px;
+	cursor: pointer;
+	opacity: 0;
+	filter: alpha(opacity=0);
+}
+.image-preview-input-title {
+    margin-left:2px;
+}
+.input-group .form-control, .input-group-addon {
+  height: 70px;
+}

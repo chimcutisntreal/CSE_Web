@@ -1,6 +1,4 @@
 <?php
-$filmNull=$castNull=$genreNull=$directorNull=$reviewNull=NULL;
-// $filmName=$genre=$casts=$director=$review=$getIDC=$getIDD=NULL;
 	session_start();
 	if($_SESSION["Level"]==3) {
 		
@@ -9,67 +7,71 @@ $filmNull=$castNull=$genreNull=$directorNull=$reviewNull=NULL;
 		exit();
 	}
 	
-	if(isset($_POST['btnPost'])){
-		$postDate= date("Y-m-d");
-		if($_POST['filmName'] == NULL){
-			$filmNull='Enter film name';
+	$errorFilm = $errorGenre = $errorReview=$errorImage=NULL;
+
+	if(isset($_POST['btnSubmit'])) {
+		
+		if (empty($_POST['txtFilm'])) {
+				$errorFilm = 'Enter Film Name';
 		} else {
-			$filmName = $_POST['filmName'];
+			$inputFilm = $_POST['txtFilm'];
 		}
-		if($_POST['casts'] == NULL){
-			$castNull='Enter casts name';
+			
+		if(empty($_POST['listGenre'])) {
+			$errorGenre = 'Choose Genre';
 		} else {
-			$casts = $_POST['casts'];
+			$listGenre = $_POST['listGenre'];
 		}
-		if($_POST['genre'] == NULL){
-			$genreNull='Enter genre';
+		
+		if(empty($_POST['image'])) {
+			$errorImage = 'Choose Image';
 		} else {
-			$genre = $_POST['genre'];
+			$image = $_POST['image'];
 		}
-		if($_POST['director'] == NULL){
-			$directorNull='Enter director name';
+		if($_POST['txtReview']==NULL) {
+			$errorReview = 'Enter Review';
 		} else {
-			$director = $_POST['director'];
+			$review = $_POST['txtReview'];
 		}
-		if($_POST['review'] == NULL){
-			$reviewNull='Enter review post';
-		} else {
-			$review = $_POST['review'];
+		
+		if(isset($inputFilm,$listGenre,$review,$image)){
+			$conn = mysqli_connect('localhost','root','','chinthereview');
+			if(!$conn) {
+				die('connection failed');
+			}
+			$getFilmExists = "SELECT * FROM film WHERE Film='$inputFilm'";
+			$resultFE = mysqli_query($conn,$getFilmExists);
+			if(mysqli_num_rows($resultFE)>0) {
+				$filmExists = 'Film exists. Try again';
+			} else {
+				$insertFilm = "INSERT INTO film(Film,Review,Admin,pre_image) VALUES('$inputFilm','$review', '$_SESSION[Admin]','$image')";
+				if (mysqli_query($conn,$insertFilm)) {
+					$result = mysqli_query($conn,"SELECT ID_F from film where Film = '$inputFilm'");
+					$data = mysqli_fetch_assoc($result);
+					
+					
+					for ($i=0; $i<count($listGenre); $i++) {
+						$insertGenreOF = "INSERT INTO genre_of_f(ID_F, ID_G) VALUES('$data[ID_F]', '$listGenre[$i]')";
+						mysqli_query($conn,$insertGenreOF);
+					}
+				}
+			}	
 		}
-	
-		if($filmName && $genre && $casts && $director && $review){
-			echo 'ok';
-		// 	$conn = mysqli_connect('localhost','root','','chichin_test');
-		// 		if(!$conn) {
-		// 			die('connection failed');
-		// 		}
-		// 	//Check casts/director exists
-		// 	$castExists = "SELECT ID_C FROM casts WHERE C_Name='$casts'";
-		// 	$result1=mysqli_query($conn,$castExists);
-		// 	$directorExists = "SELECT ID_D FROM director WHERE D_Name='$director'";
-		// 	$result2=mysqli_query($conn,$directorExists);
-		// 	if(mysqli_num_rows($result1)>0){
-		// 		$getIDC=mysqli_fetch_assoc($result1);
-		// 		echo 'lay idc thanh cong'.$getIDC;
-		// 		// $resultIDC=$getID["ID_C"];
-		// 	} else if(mysqli_num_rows($result2)>0) {
-		// 		$getIDD=mysqli_fetch_assoc($result2);
-		// 		echo 'lay idd thanh cong'.$getIDD;
-		// 		// $resultIDD=$getID["ID_D"];
-		// 	} else {
-		// 		$insertCast="INSERT INTO casts(C_Name) VALUES('$casts')";
-		// 		$query1=mysqli_query($conn,$insertCast);
-		// 		echo 'them cast thanh cong';
-		// 		$insertDirector="INSERT INTO director(D_Name) VALUES('$director')";
-		// 		$query1=mysqli_query($conn,$insertCast);
-		// 		echo 'them dr thanh cong';
-		// 	}
-		// 	$insertRv ="INSERT INTO films(Film_Name,Genre,Post_Date,ID_Admin,ID_C,ID_D) VALUES('$filmName','$genre','$postDate',$_SESSION[ID_Admin],'$getIDC','$getIDD')";
-		// 	$query3=mysqli_query($conn,$insertRv);
-		// 	echo 'them bai viet thanh cong';
-		// 	mysqli_close($conn);
-		 }
 	}
+		$conn = mysqli_connect('localhost','root','','chinthereview');
+		if(!$conn) {
+			die('connection failed');
+		}
+		
+		//Truy van
+		$getGenre= "SELECT ID_G,Genre FROM genre";
+		$resultG = mysqli_query($conn,$getGenre);	
+		
+		$getFilm = "SELECT ID_F,Film FROM film";
+		$resultF = mysqli_query($conn,$getFilm);
+		mysqli_close($conn);
+	
+	
 ?>
 
 <!DOCTYPE html>
@@ -79,19 +81,29 @@ $filmNull=$castNull=$genreNull=$directorNull=$reviewNull=NULL;
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 		<title>POST REVIEW</title>
-		<link href="css/bootstrap.min.css" rel="stylesheet">
+		<link href="css/bootstrap.css" rel="stylesheet">
 		<link href="css/font-awesome.min.css" rel="stylesheet">
 		<link href="css/datepicker3.css" rel="stylesheet">
 		<link href="css/styles.css" rel="stylesheet">
-
+		<script src="../../sweetalert2/package/dist/sweetalert2.all.min.js"></script>
+		<link rel="stylesheet" href="../../sweetalert2/package/dist/sweetalert2.css">
 		<!--Custom Font-->
 		<link href="https://fonts.googleapis.com/css?family=Montserrat:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
-		<!--[if lt IE 9]>
-	<script src="js/html5shiv.js"></script>
-	<script src="js/respond.min.js"></script>
-	<![endif]-->
-	<script src="froala_editor/js/froala_editor.min.js"></script>
-	<script language="javascript">
+	
+		<script src="froala_editor/js/froala_editor.min.js"></script>
+	
+		<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" type="text/css" />
+	<!-- Include Editor style. -->
+		<link href='froala_editor/css/froala_editor.pkgd.min.css' rel='stylesheet'>
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.3.0/codemirror.min.css">
+		<link href='froala_editor/css/froala_style.min.css' rel='stylesheet'>
+		<script type="text/javascript" src="../js/froala_editor.pkgd.min.js"></script>
+		<script src="https://code.jquery.com/jquery-3.3.1.js" integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60=" crossorigin="anonymous"></script>
+
+		<script src="js/bootstrap.min.js"></script>
+		<link rel="stylesheet" href="bootstrap-select/dist/css/bootstrap-select.css"/>
+		<script src="bootstrap-select/dist/js/bootstrap-select.min.js"></script>
+		<script language="javascript">
         function show_confirm() {
             if(confirm("Are you sure?"))
             {
@@ -100,23 +112,7 @@ $filmNull=$castNull=$genreNull=$directorNull=$reviewNull=NULL;
                 return false;
             }
         }
-	</script>
-	<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" type="text/css" />
-	<!-- Include Editor style. -->
-<link href='froala_editor/css/froala_editor.pkgd.min.css' rel='stylesheet'>
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.3.0/codemirror.min.css">
-<link href='froala_editor/css/froala_style.min.css' rel='stylesheet'>
-<script type="text/javascript" src="../js/froala_editor.pkgd.min.js"></script>
-<script
-  src="https://code.jquery.com/jquery-3.3.1.js"
-  integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60="
-  crossorigin="anonymous"></script>
-<!-- Include JS file. -->
-<
-<script src="js/bootstrap.min.js"></script>
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.13.1/css/bootstrap-select.css" />
-<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.13.1/js/bootstrap-select.min.js"></script>
-
+		</script>
 </head>
 	<body>
 		<nav class="navbar navbar-custom navbar-fixed-top" role="navigation">
@@ -190,7 +186,7 @@ $filmNull=$castNull=$genreNull=$directorNull=$reviewNull=NULL;
 					<img src="../../../stock/3.jpg" class="img-responsive" alt="">
 				</div>
 				<div class="profile-usertitle">
-					<div class="profile-usertitle-name">Username</div>
+					<div class="profile-usertitle-name"><?php echo $_SESSION["Admin"] ?></div>
 					<div class="profile-usertitle-status"><span class="indicator label-success"></span>Online</div>
 				</div>
 				<div class="clear"></div>
@@ -250,51 +246,69 @@ $filmNull=$castNull=$genreNull=$directorNull=$reviewNull=NULL;
 						
 						<div class="panel-heading">Film Info</div>
 						<div class=panel-body>
-							<div class="row">
-								<div class="col-md-8">
-									<form action="review.php" method="POST">
+							<form action="review.php" method="POST">
+								<div class="row">
+									<div class="col-md-6">
 										<div class="form-group">
-											<input type="text" class="border-input form-control1" placeholder="Film Name" name="filmName">
+											<input type="text" class="border-input form-control1" placeholder="Film Name" name="txtFilm">
+											<?php
+												echo "<p class='bg-danger'>$errorFilm<p>";	
+											?>
 										</div>
-										<select class="selectpicker" multiple data-live-search="true">
-											<option>Mustard</option>
-											<option>Ketchup</option>
-											<option>Relish</option>
-										</select>									
-									</form>	
-										
-								</div>
-
-							</div>
-						</div>
-						<div class="panel-heading">Post Review</div>
-						<div class="panel-body">
-							<div class="col-md-1"></div>
-							<div class="col-md-10"  >
-								<form role="form" action="review.php" method="POST">
-									
-									<div id="froala-editor" class="form-group" name="review">	
-										
-									</div>
-									<div class="reviewButton">
-										<button type="submit" class="btn btn-success" name="btnPost">POST</button>
-										<!-- <button type="submit" class="btn btn-danger">Clear</button> -->
-									</div>
-									<div>
-										<?php
-											echo "<p class='font-weight-bold text-danger'>$filmNull</p>";
-											echo "<p class='font-weight-bold text-danger'>$genreNull</p>";
-											echo "<p class='font-weight-bold text-danger'>$castNull</p>";
-											echo "<p class='font-weight-bold text-danger'>$directorNull</p>";
-											echo "<p class='font-weight-bold text-danger'>$reviewNull</p>";
+										<label>Choose Genre</label>
+										<select class="selectpicker" multiple data-live-search="true" name="listGenre[]">
+										<?php 
+											while ($dataG=mysqli_fetch_assoc($resultG)) {
+												echo "<option value='$dataG[ID_G]'>$dataG[Genre]</option>";
+												
+											};
 										?>
+										</select>
+										<?php
+											echo "<p class='bg-danger'>$errorGenre<p>";		
+										?>										
 									</div>
-									
-							
-								</form>	
-							</div>
-							<div class="col-md-1"></div>
+									<div class="col-md-6">
+										
+										<div class="input-group image-preview">
+											<input type="text" class="form-control image-preview-filename" placeholder="Preview Image" name="image"> <!-- don't give a name === doesn't send on POST/GET -->
+											<span class="input-group-btn">
+												<!-- image-preview-clear button -->
+												<button type="button" class="btn btn-default image-preview-clear" style="display:none;">
+													<span class="glyphicon glyphicon-remove"></span> Clear
+												</button>
+												<!-- image-preview-input -->
+												<div class="btn btn-default image-preview-input">
+													<span class="glyphicon glyphicon-folder-open"></span>
+													<span class="image-preview-input-title">Choose</span>
+													<input type="file" accept="image/png, image/jpeg, image/gif, image/jpg" name="input-file-preview"/> <!-- rename it -->
+													
+												</div>
+											</span>	
+										</div>
+										<?php
+											echo "<p class='bg-danger'>$errorFilm<p>";	
+										 ?>
+									</div>
+								</div>
+								<div class="row">
+									<div class="panel-heading">Post Review</div>
+										<div class="panel-body">
+										<div class="col-md-1"></div>
+
+										<div class="col-md-10">
+											<textarea class="form-control" id="froala-editor" rows="40" name="txtReview"></textarea>
+								
+										<div class="reviewButton">
+											<input type="submit" class="btn btn-success" name="btnSubmit" value="SUBMIT">
+										<!-- <button type="submit" class="btn btn-danger">Clear</button> -->
+										</div>
+										<div class="col-md-1"></div>
+								</div>
+							</form>
 						</div>
+	
+						
 						<div class="panel-heading">Management</div>
 						<div class="panel-body">
 							<div class="row">
@@ -303,35 +317,25 @@ $filmNull=$castNull=$genreNull=$directorNull=$reviewNull=NULL;
 									<ul class="timeline">
 										<table>
 											<tr>
-												<th>ID Film</th>
+												<th style="width:200px;">ID Film</th>
 												<th>Film Name</th>
-												<th>Edit</th>
-												<th>Delete</th>
+												<th style="width:200px;">Edit</th>
+												<th style="width:200px;">Delete</th>
 											</tr>
-			<tr>
+		<tr>
             <?php
-            //Mo ket noi csdl
-            $conn = mysqli_connect('localhost','root','','chichin_test');
-            if(!$conn) {
-                die('connection failed');
-            }
-            //Truy van
-            $getData = "SELECT ID_FILM,Film_Name FROM films";
-            $result = mysqli_query($conn,$getData);
-            while($dataArray = mysqli_fetch_assoc($result))
+            while($dataArray=mysqli_fetch_assoc($resultF))
             {
                 echo "<tr>";
-                    echo"<td>$dataArray[ID_FILM]</td>";
-                    echo"<td>$dataArray[Film_Name]</td>";
+                    echo"<td>$dataArray[ID_F]</td>";
+                    echo"<td>$dataArray[Film]</td>";
                     echo"<td><a href=''>Edit</a></td>";
                     
 
-                    echo"<td><a href='delete_element/delete_review.php?id=$dataArray[ID_FILM]' onclick = 'return show_confirm();'>Delete</a></td>";
+                    echo"<td><a href='delete_element/delete_review.php?id=$dataArray[ID_F]' onclick = 'return show_confirm();'>Delete</a></td>";
                 echo "</tr>";
             }
-            
-            mysqli_close($conn);
-        ?>
+        	?>
 		</tr>
 		</table>
 		</ul>
@@ -354,21 +358,76 @@ $filmNull=$castNull=$genreNull=$directorNull=$reviewNull=NULL;
 		
 		<script>
 			$(function() {
-				$('div#froala-editor').froalaEditor({
+				$('#froala-editor').froalaEditor({
+				toolbarInline: false,
 				toolbarButtons: ['bold', 'italic', 'underline', 'strikeThrough', 'subscript', 'superscript', '|', 'fontFamily', 'fontSize', 'color', 'inlineStyle', 'inlineClass', 'clearFormatting', '|', 'emoticons', 'fontAwesome', 'specialCharacters', '-', 'paragraphFormat', 'lineHeight', 'paragraphStyle', 'align', 'formatOL', 'formatUL', 'outdent', 'indent', 'quote', '|', 'insertLink', 'insertImage', 'insertVideo', 'insertFile', 'insertTable', '-', 'insertHR', 'selectAll', 'getPDF', 'print', 'help', 'html', 'fullscreen', '|', 'undo', 'redo']
 				})
 			});
+
+			
+	$(document).on('click', '#close-preview', function(){ 
+    $('.image-preview').popover('hide');
+    // Hover befor close the preview
+    $('.image-preview').hover(
+        function () {
+           $('.image-preview').popover('show');
+        }, 
+         function () {
+           $('.image-preview').popover('hide');
+        }
+    );    
+	});
+
+	$(function() {
+		// Create the close button
+		var closebtn = $('<button/>', {
+			type:"button",
+			text: 'x',
+			id: 'close-preview',
+			style: 'font-size: initial;',
+		});
+		closebtn.attr("class","close pull-right");
+		// Set the popover default content
+		$('.image-preview').popover({
+			trigger:'manual',
+			html:true,
+			title: "<strong>Preview</strong>"+$(closebtn)[0].outerHTML,
+			content: "There's no image",
+			placement:'bottom'
+		});
+		// Clear event
+		$('.image-preview-clear').click(function(){
+			$('.image-preview').attr("data-content","").popover('hide');
+			$('.image-preview-filename').val("");
+			$('.image-preview-clear').hide();
+			$('.image-preview-input input:file').val("");
+			$(".image-preview-input-title").text("Browse"); 
+		}); 
+		// Create the preview image
+		$(".image-preview-input input:file").change(function (){     
+			var img = $('<img/>', {
+				id: 'dynamic',
+				width:450,
+				height:300,
+			});      
+			var file = this.files[0];
+			var reader = new FileReader();
+			// Set preview image into the popover data-content
+			reader.onload = function (e) {
+				$(".image-preview-input-title").text("Change");
+				$(".image-preview-clear").show();
+				$(".image-preview-filename").val(file.name);            
+				img.attr('src', e.target.result);
+				$(".image-preview").attr("data-content",$(img)[0].outerHTML).popover("show");
+			}        
+			reader.readAsDataURL(file);
+		});  
+	});
+				
 		</script>
 
-		<!-- <script>
-			// Material Select Initialization
-			$(document).ready(function() {
-			$('.mdb-select').materialSelect();
-			});
-		</script> -->
-		<!-- <script type='text/javascript' src='https://cdn.jsdelivr.net/npm/froala-editor@2.9.1/js/froala_editor.min.js'></script> -->
+	
 		<script>
-			// Material Select Initialization
 			$('select').selectpicker();
 		</script>
 		

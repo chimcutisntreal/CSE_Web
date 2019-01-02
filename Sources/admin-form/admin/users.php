@@ -105,7 +105,7 @@
 					<img src="../../../stock/3.jpg" class="img-responsive" alt="">
 				</div>
 				<div class="profile-usertitle">
-					<div class="profile-usertitle-name">Admin1</div>
+					<div class="profile-usertitle-name"><?php echo $_SESSION["Admin"] ?></div>
 					<div class="profile-usertitle-status"><span class="indicator label-success"></span>Online</div>
 				</div>
 				<div class="clear"></div>
@@ -169,7 +169,7 @@
 			<tr>
             <?php
             //Mo ket noi csdl
-            $conn = mysqli_connect('localhost','root','','chichin_test');
+            $conn = mysqli_connect('localhost','root','','chinthereview');
             if(!$conn) {
                 die('connection failed');
             }
@@ -199,7 +199,7 @@
                     }  if ($dataArray['Level'] == 3) {
                         echo"<td>Admin</td>";
                     }
-                    echo"<td><a href='delete_element/delete_user.php?id=$dataArray[ID_User]' onclick = 'return show_confirm();'>Delete</a></td>";
+                    echo"<td><a href='delete_element/delete_user.php?id=$dataArray[ID_User]' onclick = 'return show_confirm();' style='color:red'>Delete</a></td>";
                 echo "</tr>";
             }
             

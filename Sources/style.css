@@ -131,18 +131,28 @@ a.Menu {
     color:black;
 }
 .navnav{
-  margin: auto;
+  margin-left: 20%;
 }
+.navnav2{
+  margin-left: 20%;
 
+}
 .line-row{
   position: relative;
 }
-.line{
-
+.lineTop{
   width: 80%;
   height: 5px;
   border-bottom: 1px solid white;
   margin: auto;
+  vertical-align: middle;
+}
+.lineBot{
+  width: 80%;
+  height: 5px;
+  border-bottom: 1px solid white;
+  margin: auto;
+  margin-top:2%;
   vertical-align: middle;
 }
 

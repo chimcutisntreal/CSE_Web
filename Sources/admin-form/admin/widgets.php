@@ -97,7 +97,7 @@
 				<img src="../../../stock/3.jpg" class="img-responsive" alt="">
 			</div>
 			<div class="profile-usertitle">
-				<div class="profile-usertitle-name">Admin1</div>
+				<div class="profile-usertitle-name"><?php echo $_SESSION["Admin"] ?></div>
 				<div class="profile-usertitle-status"><span class="indicator label-success"></span>Online</div>
 			</div>
 			<div class="clear"></div>

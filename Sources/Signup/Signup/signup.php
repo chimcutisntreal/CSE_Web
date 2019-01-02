@@ -50,7 +50,7 @@
 
         //Ket noi csdl
         if(isset($inputEmail,$inputPass,$inputName,$fav,$phone,$pass)) {
-            $conn = mysqli_connect('localhost','root','','chichin_test');
+            $conn = mysqli_connect('localhost','root','','chinthereview');
             if(!$conn) {
                 die('connection failed');
             }
@@ -71,15 +71,44 @@
                 if (!$resultInsert) {
                     die('insert error');
                 } else {
-                    echo "insert successfully: Email: ".$inputEmail." Password: ".$inputPass;
-                    
+                    require('PHPMailer/Mailer.php');
+                                                 
+                    try {
+                        //Server settings
+                        $mail->SMTPDebug = 0;                                 // Enable verbose debug output
+                        $mail->isSMTP();                                      // Set mailer to use SMTP
+                        $mail->Host = 'smtp.gmail.com';  // Specify main and backup SMTP servers
+                        $mail->SMTPAuth = true;                               // Enable SMTP authentication
+                        $mail->Username = 'bombeo922@gmail.com';                 // SMTP username
+                        $mail->Password = 'chinh5298';                           // SMTP password
+                        $mail->SMTPSecure = 'tls';                            // Enable TLS encryption, `ssl` also accepted
+                        $mail->Port = 587;                                    // TCP port to connect to
+                     
+                        //Recipients
+                        $mail->CharSet= 'UTF-8';
+                        $mail->setFrom('bombeo922@gmail.com', 'Mailer');
+                        $mail->addAddress('chutrieuchinh98@gmail.com');     // Add a recipient
+                        
+                        
+                        //Content
+                        $mail->isHTML(true);                                  // Set email format to HTML
+                        $mail->Subject = 'Activating Mail';
+                        $mail->Body    = "Click http://localhost/chimcut/ChiChin/CSE_Web/Sources/active.php?username=$inputName to active";
+                        $mail->send();
+             
+                    } catch (Exception $e) {
+                        echo 'Message could not be sent. Mailer Error: ', $mail->ErrorInfo;
+                    }      
                 }
+             
             }
             mysqli_close($conn);
         }
     }
 
 ?>
+    <script src="../../sweetalert2/package/dist/sweetalert2.all.min.js"></script>
+	<link rel="stylesheet" href="../../sweetalert2/package/dist/sweetalert2.css">
 <!DOCTYPE html>
 <html lang="en">
 
@@ -199,7 +228,7 @@
                             </div>
 
                             <div>
-                                <button class="btn btn--radius-2 btn--green" type="submit" name="btnRegister">Register</button>
+                                <button class="btn btn--radius-2 btn--green" type="submit" name="btnRegister" onclick="Swal()">Register</button>
                             </div>
                             <div class="subtxt">
                                 <p>Have already an account? <a class="txt1" style="text-decoration: none" href="../../../Sources/Login/Login/login.php">Sign-in
@@ -211,6 +240,20 @@
             </div>
         </div>
 
+      <script> 
+            Swal({
+                title: 'Thanks for registering!!!',
+                text: "Please check your email for the activation steps",
+                type: 'success',
+                showCancelButton: false,
+                confirmButtonColor: '#3085d6',
+                confirmButtonText: 'Got it!!!'
+                }).then((result) => {
+                if (result.value) {
+                 
+                }
+            })    
+      </script>
         <!-- Jquery JS-->
         <script src="vendor/jquery/jquery.min.js"></script>
         <!-- Vendor JS-->

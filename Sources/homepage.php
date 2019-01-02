@@ -11,12 +11,12 @@
         <link rel="stylesheet" href="style.css">
         <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU"
             crossorigin="anonymous">
-        <script src="jquery-3.3.1.slim.min.js"></script>
-        <script src="js/jquery.min.js"></script>
-        <script src="popper.min.js"></script>
-        <script src="bootstrap.min.js"></script>
+   
+      
+       
         <link rel="stylesheet" href="bootstrap-4.1.3-dist/css/bootstrap.min.css">
         <link rel="stylesheet" href="w3school/w3.css">
+        
         
         <style>
             body {
@@ -91,13 +91,13 @@
                                 <a class="Menu" style="text-decoration: none" href="WebO.html">WEB ONLY</a>
                                 <a class="Menu" style="text-decoration: none" href="issue.html">ISSUE ARCHIVE</a>
                                 <a class="Menu" style="text-decoration: none" href="sub.html">SUBSCRIBE</a>
-                                <a class="Menu" style="text-decoration: none" href="genre.html">GENRE</a>
+                                <a class="Menu" style="text-decoration: none" href="direc.html">Genre</a>
                                 <a class="Menu" style="text-decoration: none" href="direc.html">DIRECTORS & CASTS</a>
                             </span>
                         
                     </div>
                     <div class="row line-row">
-                        <div class="col-md-8 line">
+                        <div class="col-md-8 lineTop">
                             <!-- <div class="line"></div> -->
                         </div>
                     </div>
@@ -325,11 +325,11 @@
                     </div>
                     <div class="row">
                         <div class="col-md-12">
-                            <div class="line"></div>
+                            <div class="lineBot"></div>
                         </div>
                     </div>
                     <div class="row">
-                        <span class="navnav2" style="margin-left: 8%">
+                        <span class="navnav2">
                             <a class="Menu2" href="current.html">ABOUT</a>
                             <a class="Menu2" href="WebO.html">ADVERTISE</a>
                             <a class="Menu2" href="issue.html">PRIVACY</a>
@@ -354,8 +354,12 @@
             $("#showMenu").click(function(){
                 $("#hideMenu").show();
             });
+            
         </script>
         <script src="implement.js"></script>
+        <script src="js/popper.min.js"></script>
+        <script src="/js/bootstrap.min.js"></script>
+        <script src="js/jquery.min.js"></script>
     </body>
 
 </html>

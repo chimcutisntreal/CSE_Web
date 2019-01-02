@@ -1,7 +1,7 @@
 <?php
 	session_start();
 	if($_SESSION["Level"]==3) {
-		echo 'Admin form!';
+		
 	} else {
 		header("location:../../homepage.php");
 		exit();
@@ -9,7 +9,7 @@
 
 	
 	//Mo ket noi csdl
-	$conn = mysqli_connect('localhost','root','','chichin_test');
+	$conn = mysqli_connect('localhost','root','','chinthereview');
 	if(!$conn) {
 		die('connection failed');
 	}
@@ -26,6 +26,7 @@
 		echo $genre;
 		
 	}
+
 	mysqli_close($conn);
 ?>
 
@@ -40,8 +41,8 @@
     <link href="css/datepicker3.css" rel="stylesheet">
     <link href="css/font-awesome.min.css" rel="stylesheet">
 	<link href="css/styles.css" rel="stylesheet">
-	<script src="sweetalert2/package/dist/sweetalert2.all.min.js"></script>
-	<link rel="stylesheet" href="sweetalert2/package/dist/sweetalert2.css">
+	<script src="../../sweetalert2/package/dist/sweetalert2.all.min.js"></script>
+	<link rel="stylesheet" href="../../sweetalert2/package/dist/sweetalert2.css">
 		<!--Custom Font-->
 	<link href="https://fonts.googleapis.com/css?family=Montserrat:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
 	<script
@@ -50,17 +51,6 @@
 		crossorigin="anonymous">
 	</script>
  
- <script language="javascript">
-        function show_confirm() {
-            if(confirm("Are you sure?"))
-            {
-                return true;
-            } else {
-                return false;
-            }
-        }
-
-    </script>
 </head>
 <body>
 <nav class="navbar navbar-custom navbar-fixed-top" role="navigation">
@@ -134,7 +124,7 @@
 					<img src="../../../stock/3.jpg" class="img-responsive" alt="">
 				</div>
 				<div class="profile-usertitle">
-					<div class="profile-usertitle-name">Admin1</div>
+					<div class="profile-usertitle-name"><?php echo $_SESSION["Admin"] ?></div>
 					<div class="profile-usertitle-status"><span class="indicator label-success"></span>Online</div>
 				</div>
 				<div class="clear"></div>
@@ -196,8 +186,8 @@
 											echo "<tr>";
 												echo"<td>$dataArray[ID_G]</td>";
 												echo"<td>$dataArray[Genre]</td>";
-												echo"<td><a href='#'>Edit</a></td>";
-												echo"<td><a href='delete_element/delete_genre.php?id=$dataArray[ID_G]' onclick = 'return show_confirm();'>Delete</a></td>";
+												echo"<td><a class='btnEdit'>Edit</a></td>";
+												echo"<td><a href='delete_element/delete_genre.php?id=$dataArray[ID_G]' onclick = 'return show_confirm();' style='color: red'>Delete</a></td>";
 											echo "</tr>";
 										} 
 									
@@ -216,14 +206,13 @@
 			$(document).ready(function(){
 				$("#btnAdd").click(function(){
 					(async function getText () {
-				const {value: text} = await Swal({
-				input: 'text',
-				inputPlaceholder: 'Enter genre',
-				showCancelButton: true
+					const {value: text} = await Swal({
+					input: 'text',
+					inputPlaceholder: 'Enter genre',
+					showCancelButton: false
 				})
 
 				if (text) {
-					Swal("Add "+text+ " successfull!!!")
 					
 					var getG = text;
 					$.ajax({
@@ -231,15 +220,35 @@
 						url:'genre.php',
 						data: {getGenre:getG},
 						success: function(data){
-						
+						location.reload()
 						}
-					})
+					})	
 				}
 				})();
-			
 				});
-			
-			});
+
+				$(".btnEdit").click(function(){
+					(async function getText () {
+					const {value: text} = await Swal({
+					input: 'text',
+					showCancelButton: false
+					
+				})
+				})();
+				});	
+			})
+
+			function show_confirm() {
+            if(confirm("Are you sure?"))
+            {
+                return true;
+            } else {
+                return false;
+            }
+
+	
+        };
+		
 		</script>
 			
 </body>
