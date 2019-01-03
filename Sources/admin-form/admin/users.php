@@ -101,9 +101,6 @@
 		</nav>
 		<div id="sidebar-collapse" class="col-sm-3 col-lg-2 sidebar">
 			<div class="profile-sidebar">
-				<div class="profile-userpic">
-					<img src="../../../stock/3.jpg" class="img-responsive" alt="">
-				</div>
 				<div class="profile-usertitle">
 					<div class="profile-usertitle-name"><?php echo $_SESSION["Admin"] ?></div>
 					<div class="profile-usertitle-status"><span class="indicator label-success"></span>Online</div>
@@ -118,7 +115,6 @@
 			</form>
 			<ul class="nav menu">
 				<li><a href="index.php"><em class="fa fa-dashboard">&nbsp;</em> Dashboard</a></li>
-				<li><a href="widgets.php"><em class="fa fa-calendar">&nbsp;</em> Widgets</a></li>
 				<li><a href="review.php"><img src="https://img.icons8.com/ios/15/000000/video-editing.png"> Post Review</a></li>
 				<li><a href="genre.php"><img src="https://img.icons8.com/ios/15/000000/school-director.png"> Genre</a></li>
                 
@@ -175,11 +171,13 @@
             }
             //Truy van
             $getData = "SELECT ID_User,User_Name,Email,Join_Date,Phone_Number,Fav,Status,Level FROM users";
-            $result = mysqli_query($conn,$getData);
+			$result = mysqli_query($conn,$getData);
+			$i=0;
             while($dataArray = mysqli_fetch_assoc($result))
             {
+				$i+=1;
                 echo "<tr>";
-                    echo"<td>$dataArray[ID_User]</td>";
+                    echo"<td>$i</td>";
                     echo"<td>$dataArray[User_Name]</td>";
                     echo"<td>$dataArray[Email]</td>";
                     echo"<td>$dataArray[Join_Date]</td>";

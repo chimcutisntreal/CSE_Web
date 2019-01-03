@@ -60,18 +60,14 @@
 			
 		}
 	}	
+		$id= $_GET["id"];
 		$conn = mysqli_connect('localhost','root','','chinthereview');
 		if(!$conn) {
 			die('connection failed');
 		}
-		
-		//Truy van
-		$getGenre= "SELECT ID_G,Genre FROM genre";
-		$resultG = mysqli_query($conn,$getGenre);	
-		
-		$getFilm = "SELECT ID_F,Film FROM film";
-		$resultF = mysqli_query($conn,$getFilm);
 
+		$editResult = mysqli_query($conn,"SELECT Film,pre_image,Review FROM film,genre  WHERE film.ID_F=$id");
+		$editData = mysqli_fetch_assoc($editResult);
 		mysqli_close($conn);
 	
 	
@@ -249,7 +245,7 @@
 								<div class="row">
 									<div class="col-md-6">
 										<div class="form-group">
-											<input type="text" class="border-input form-control1" placeholder="Film Name" name="txtFilm">
+											<input type="text" class="border-input form-control1" placeholder="Film Name" name="txtFilm" value="<?php echo $editData['Film']; ?>">
 											<?php
 												echo "<p class='bg-danger'>$errorFilm<p>";	
 											?>
@@ -270,7 +266,7 @@
 									<div class="col-md-6">
 										
 										<div class="input-group image-preview">
-											<input type="text" class="form-control image-preview-filename" disabled placeholder="Preview Image" name="image"> <!-- don't give a name === doesn't send on POST/GET -->
+											<input type="text" class="form-control image-preview-filename" disabled placeholder="Preview Image" name="image" value="<?php echo $editData['pre_image']; ?>"> <!-- don't give a name === doesn't send on POST/GET -->
 											<span class="input-group-btn">
 												<!-- image-preview-clear button -->
 												<button type="button" class="btn btn-default image-preview-clear" style="display:none;">
@@ -296,57 +292,16 @@
 										<div class="col-md-1"></div>
 
 										<div class="col-md-10">
-											<textarea class="form-control" id="froala-editor" rows="40" name="txtReview"></textarea>
+											<textarea class="form-control" id="froala-editor" rows="40" name="txtReview"><?php echo "$editData[Review]"; ?></textarea>
 								
 										<div class="reviewButton">
-											<input type="submit" class="btn btn-success" name="btnSubmit" value="SUBMIT">
-										<!-- <button type="submit" class="btn btn-danger">Clear</button> -->
+											<input type="submit" class="btn btn-success" name="btnSubmit" value="DONE">
+											<input type="submit" class="btn btn-danger" name="btnSubmit" value="CANCEL" href="review.php">
 										</div>
 										<div class="col-md-1"></div>
 								</div>
 							</form>
 						</div>
-	
-						
-						<div class="panel-heading">Management</div>
-						<div class="panel-body">
-							<div class="row">
-								<div class="col-md-12">
-								<div class="panel-body timeline-container">
-									<ul class="timeline">
-										<table>
-											<tr>
-												<th style="width:200px;">ID Film</th>
-												<th>Film Name</th>
-												<th style="width:200px;">Edit</th>
-												<th style="width:200px;">Delete</th>
-											</tr>
-		<tr>
-			<?php
-			$i=0;
-            while($dataArray=mysqli_fetch_assoc($resultF))
-            {	
-				$i+=1;
-                echo "<tr>";
-                    echo"<td>$i</td>";
-                    echo"<td>$dataArray[Film]</td>";
-                    echo"<td><a href='edit_review.php?id=$dataArray[ID_F]'>Edit</a></td>";
-                    
-
-                    echo"<td><a href='delete_element/delete_review.php?id=$dataArray[ID_F]' onclick = 'return show_confirm();' style='color:red'>Delete</a></td>";
-                echo "</tr>";
-            }
-        	?>
-		</tr>
-		</table>
-		</ul>
-		</div>
-		</div>
-		</div>
-		</div>
-		</div>
-
-					
 				</div><!-- /.panel-->
 			</div><!-- /.col-->
 

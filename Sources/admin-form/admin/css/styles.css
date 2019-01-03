@@ -318,7 +318,8 @@ a.btn:active, button:active {
   border-color: #c42424;
   font-weight: bold;
   font-size: 35px;
-  border-radius: 20px 20px 20px 20px; }
+  border-radius: 20px;
+  margin-top:10px; }
 
 .btn-link, .page-link, .text-primary {
   color: #30a5ff !important; }

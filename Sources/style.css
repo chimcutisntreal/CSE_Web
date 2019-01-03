@@ -134,7 +134,7 @@ a.Menu {
   margin-left: 20%;
 }
 .navnav2{
-  margin-left: 20%;
+  padding-left: 200px;
 
 }
 .line-row{
@@ -158,9 +158,8 @@ a.Menu {
 .preImage{
   opacity: 1;
   display: block;
-  width:436px;
-  max-height:245px;
-  height: auto;
+  width:388px;
+  height: 240px;
   transition: .5s ease;
   backface-visibility: hidden;
 }
@@ -194,7 +193,7 @@ a.Menu {
   background-clip: border-box;
   border: 1px solid rgba(0,0,0,.125);
   border-radius: .25rem;
-  width: 438px;
+  width: 390px;
 
 }
 .card1:hover .preImage {
@@ -206,70 +205,7 @@ a.Menu {
 .card1:hover .posGenre {
   opacity: 0.9;
 }
-.col-md-10{
-  max-width: 100%;
-}
 
-/* dropdown */
-/* .dropdown {
-  position: relative;
-  display: inline-block;
-  color: white;
-  font-family: 'LVN';
-  margin-left: 70px;
-}
-
-.dropdown-content {
-  display: none;
-  position: absolute;
-  background-color: #f1f1f1;
-  min-width: 160px;
-  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
-  z-index: 1;
-}
-
-.dropdown-content a {
-  color: black;
-  padding: 12px 16px;
-  text-decoration: none;
-  display: block;
-}
-
-.dropdown-content a:hover {background-color: #ddd;}
-
-.dropdown:hover .dropdown-content {display: block;}
-
-.dropdown:hover .dropbtn {background-color: #6e856eea;} */
-
-/* side genre*/
-.genre{
-  margin-top: 3%;
-}
-
-.genre li{
-  list-style: none;
-}
-
-.sideMenu{
-  color: white;
-  font-family: 'LVN';
-  font-size: 20px;
-}
-
-.sideMenu:hover{
-  background-color: #b1c4d1;
-  border: none;
-  color: white;
-  padding: 16px 32px;
-  text-align: center;
-  font-size: 22px;
-  margin: 4px 2px;
-  opacity: 0.6;
-  transition: 0.3s;
-  font-family: 'LVN';
-  font-style: bold;
-}
-/*end sidemenu*/
 
 .r1{
   background-image: url("./stock/background2.jpg");
@@ -281,8 +217,8 @@ a.Menu {
 }
 
 .PicPrev{
-  max-height: 300px;
-  max-width: 700px;
+  height: 300px;
+  width: 450px;
   margin-left: 5%;
 }
 
