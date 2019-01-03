@@ -1622,21 +1622,6 @@ span.flatpickr-weekday {
       flex-grow: 1;
 }
 
-.s002 form .inner-form .input-field.second-wrap {
-  min-width: 190px;
-  max-width: 190px;
-}
-
-.s002 form .inner-form .input-field.third-wrap {
-  min-width: 190px;
-  max-width: 190px;
-}
-
-.s002 form .inner-form .input-field.fouth-wrap {
-  min-width: 190px;
-  max-width: 190px;
-  border-right: 0;
-}
 
 .s002 form .inner-form .input-field.fouth-wrap .choices__inner {
   background: #fff;

@@ -94,9 +94,12 @@
                                 <div class="dropdown">
                                 <p class="dropbtn">GENRE</p>
                                     <div class="dropdown-content">
-                                        <a href="#" style="text-decoration: none">Romantic</a>
+                                        <a href="#" style="text-decoration: none">Romance</a>
                                         <a href="#" style="text-decoration: none">Horror</a>
                                         <a href="#" style="text-decoration: none">Action</a>
+                                        <a href="#" style="text-decoration: none">Animation</a>
+                                        <a href="#" style="text-decoration: none">Tragedy</a>
+                                        <a href="#" style="text-decoration: none">Drama</a>
                                     </div>
                                 </div>
                                 <a class="Menu" style="text-decoration: none" href="direc.html">DIRECTORS & CASTS</a>
