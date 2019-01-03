@@ -155,6 +155,60 @@ a.Menu {
   margin-top:2%;
   vertical-align: middle;
 }
+.preImage{
+  opacity: 1;
+  display: block;
+  width:436px;
+  max-height:245px;
+  height: auto;
+  transition: .5s ease;
+  backface-visibility: hidden;
+}
+.preImage-click{
+  transition: .5s ease;
+  opacity: 0;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%);
+  text-align: center;
+}
+.posGenre{
+  transition: .5s ease;
+  opacity: 0;
+  position: absolute;
+  top:5%;
+  left:5%;
+ 
+}
+.card1{
+  position: relative;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  min-width: 0;
+  word-wrap: break-word;
+  background-color: #fff;
+  background-clip: border-box;
+  border: 1px solid rgba(0,0,0,.125);
+  border-radius: .25rem;
+  width: 438px;
+
+}
+.card1:hover .preImage {
+  opacity: 0.7;
+}
+.card1:hover .preImage-click {
+  opacity: 1;
+}
+.card1:hover .posGenre {
+  opacity: 0.9;
+}
+.col-md-10{
+  max-width: 100%;
+}
 
 .r1{
   background-image: url("./stock/background2.jpg");

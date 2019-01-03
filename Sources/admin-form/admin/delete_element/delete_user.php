@@ -1,6 +1,6 @@
 <?php
     $id=$_GET['id'];
-    $conn = mysqli_connect('localhost','root','','chichin_test');
+    $conn = mysqli_connect('localhost','root','','chinthereview');
     if(!$conn) {
         die('connection failed');
     }
