@@ -30,10 +30,10 @@
                         <div class="col-md-2">
                             <div id="mySidebar" class="sidebar">
                                     <a href="javascript:void(0)" class="closebtn" onclick="closeNav()" id="showMenu">×</a>
-                                    <a href="#">About</a>
+                                    <a href="about.html">About</a>
                                     <a href="#">Services</a>
                                     <a href="#">Clients</a>
-                                    <a href="#">Contact</a>
+                                    <a href="Contact/Contact/index.html">Contact</a>
                                 </div>
 
                             <div id="main">
@@ -52,7 +52,7 @@
                             </a>
                         </div>
                         <div class="button col-md-2">
-                            <?php
+                            <!-- <?php
                             if(isset($_SESSION["username"])) {
                                 echo "<div class='text-success'><h4 class='wel'><p class='font-weight-bold'>Welcome ".$_SESSION["username"]."</p></h4></div> <a href='logout.php'><button type='button' class='btn btn-success'>
                                 Logout</button></a>";
@@ -63,7 +63,7 @@
                                 Sign Up</button></a>";
                             }
                            
-                            ?>
+                            ?> -->
                              <!-- <a href='../ChiChin/Login/Login/login.php'><button type='button' class='btn btn-success'>
                                 Sign In </button></a>
                             <a href='../ChiChin/Signup/Signup/signup.php'><button type='button' class='btn btn-success'>
@@ -87,7 +87,18 @@
                                 <a class="Menu" style="text-decoration: none" href="WebO.html">WEB ONLY</a>
                                 <a class="Menu" style="text-decoration: none" href="issue.html">ISSUE ARCHIVE</a>
                                 <a class="Menu" style="text-decoration: none" href="sub.html">SUBSCRIBE</a>
-                                <a class="Menu" style="text-decoration: none" href="direc.html">Genre</a>
+                                <a class="Menu" style="text-decoration: none" href="Genre/Genre/src/index.html">GENRE</a>
+                                <div class="dropdown">
+                                <!-- <p class="dropbtn">GENRE</p>
+                                    <div class="dropdown-content">
+                                        <a href="#" style="text-decoration: none">Romance</a>
+                                        <a href="#" style="text-decoration: none">Horror</a>
+                                        <a href="#" style="text-decoration: none">Action</a>
+                                        <a href="#" style="text-decoration: none">Animation</a>
+                                        <a href="#" style="text-decoration: none">Tragedy</a>
+                                        <a href="#" style="text-decoration: none">Drama</a>
+                                    </div>
+                                </div> -->
                                 <a class="Menu" style="text-decoration: none" href="direc.html">DIRECTORS & CASTS</a>
                             </span>
                         
@@ -326,19 +337,19 @@
                     </div>
                     <div class="row">
                         <span class="navnav2">
-                            <a class="Menu2" href="current.html">ABOUT</a>
-                            <a class="Menu2" href="WebO.html">ADVERTISE</a>
-                            <a class="Menu2" href="issue.html">PRIVACY</a>
-                            <a class="Menu2" href="sub.html">SOCIAL</a>
-                            <a class="Menu2" href="genre.html">EVENTS</a>
-                            <a class="Menu2" href="direc.html">CONTACT</a>
+                            <a class="Menu2" href="about.html">ABOUT</a>
+                            <a class="Menu2" href="ads.html">ADVERTISE</a>
+                            <a class="Menu2" href="privacy.html">PRIVACY</a>
+                            <a class="Menu2" href="social.html">SOCIAL</a>
+                            <a class="Menu2" href="events.html">EVENTS</a>
+                            <a class="Menu2" href="Contact/Contact/index.html">CONTACT</a>
                         </span>
                     </div>
                 </div>
             </div>
             <p class="EndTitle">
                 COPY RIGHT AND POWERED
-            </P>
+            </p>
         </div>
         </div>
         </div>

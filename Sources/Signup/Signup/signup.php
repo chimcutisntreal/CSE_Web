@@ -207,13 +207,10 @@
                                                 <option disabled="disabled" selected="selected" value="favorite">Choose Favorite</option>
                                                 <option value="Action">Action</option>
                                                 <option value="Horror">Horror</option>
-                                                <option value="Comedy">Comedy</option>
                                                 <option value="Drama">Drama</option>
-                                                <option value="Documentary">Documentary</option>
                                                 <option value="Tragedy">Tragedy</option>
                                                 <option value="Animation">Animation</option>
                                                 <option value="Romance">Romance</option>
-                                                <option value="Mature">Mature</option>
                                             </select>
                                             <div class="select-dropdown"></div>
                                         </div>

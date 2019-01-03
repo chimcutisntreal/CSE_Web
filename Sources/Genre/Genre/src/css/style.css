@@ -1,0 +1,183 @@
+
+@font-face {
+    font-family: LVN;
+    src: url('../../../../font/lvnm.ttf');
+  }
+  
+  .fa-bars{
+      position: relative;
+      margin-top: 40px;
+      margin-left: 10px;
+  }
+  
+  .fa-search{
+      position: relative;
+      margin-top: 40px;
+      margin-left: 10px;
+  }
+  
+  .fa-instagram{
+    position: relative;
+    margin-top: 40px;
+    margin-left: 60px;
+    margin-right: 20px;
+  }
+  
+  .fa-facebook{
+    position: relative;
+    margin-top: 40px;
+  }
+  
+  .fa-twitter{
+    position: relative;
+    margin-top: 40px;
+    margin-left: 20px;
+  }
+  
+  .MainTitle{
+      font-family: 'LVN';
+      font-size: 50px;
+      color: rgb(255, 255, 255);
+      margin-top: 20px;
+      text-align: center;
+  }
+  /*sidebar*/
+  .sidebar {
+    height: 100%;
+    width: 0;
+    position: fixed;
+    z-index: 1;
+    top: 0;
+    left: 0;
+    background-color: #111;
+    overflow-x: hidden;
+    transition: 0.5s;
+    padding-top: 60px;
+  }
+  
+  .sidebar a {
+    padding: 8px 8px 8px 32px;
+    text-decoration: none;
+    font-size: 25px;
+    color: #818181;
+    display: block;
+    transition: 0.3s;
+  }
+  
+  .sidebar a:hover {
+    color: #f1f1f1;
+  }
+  
+  .sidebar .closebtn {
+    position: absolute;
+    top: 0;
+    right: 25px;
+    font-size: 36px;
+    margin-left: 50px;
+  }
+  
+  .openbtn {
+    font-size: 20px;
+    cursor: pointer; 
+    color: white;
+    padding: 10px 15px;
+    border: none;
+  }
+  
+  .openbtn:hover {
+    background-color: #444;
+  }
+  
+  #main {
+    transition: margin-left .5s;
+    padding: 16px;
+    display: inline-block;
+  }
+  
+  /* On smaller screens, where height is less than 450px, change the style of the sidenav (less padding and a smaller font size) */
+  @media screen and (max-height: 450px) {
+    .sidebar {padding-top: 15px;}
+    .sidebar a {font-size: 18px;}
+  }
+  #wel {
+    margin-top: 0;
+    margin-bottom: 0rem;
+  }
+  /*button sign*/
+  .button {
+    border-radius: 4px;
+    border: none;
+    color: #FFFFFF;
+    text-align: center;
+    font-size: 28px;
+    padding: 5px;
+    width: 30px;
+    transition: all 0.5s;
+    cursor: pointer;
+    margin: 1% auto;
+  }
+  
+  .Menu{
+      display: inline-block;
+      color: white;
+      font-family: 'LVN';
+      margin:auto;
+      
+  }
+  a.Menu {
+    margin: 5px 30px 5px 30px;
+  }
+  .Menu:hover{
+      color:black;
+  }
+  .navnav{
+    margin-left: 20%;
+  }
+  .navnav2{
+    margin-left: 20%;
+  
+  }
+  .line-row{
+    position: relative;
+  }
+  .lineTop{
+    width: 80%;
+    height: 5px;
+    border-bottom: 1px solid white;
+    margin: auto;
+    vertical-align: middle;
+  }
+  .lineBot{
+    width: 80%;
+    height: 5px;
+    border-bottom: 1px solid white;
+    margin: auto;
+    margin-top:2%;
+    vertical-align: middle;
+  }
+
+  .Menu2{
+    display: inline-block;
+    color: white;
+    font-family: 'LVN';
+    margin-left: 100px;
+    margin-top: 40px;
+    margin-bottom: 15px;
+  }
+  
+  .Menu2:hover{
+    text-decoration: none;
+  }
+  
+  .SubTitle{
+      color: white;
+      text-align: center;
+      font-size: 50px;
+  }
+  
+  .EndTitle{
+      text-align: center;
+      margin-top: 40px;
+      font-size: 10px;
+      color:white;
+  }
