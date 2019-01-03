@@ -34,10 +34,10 @@
                         <div class="col-md-2">
                             <div id="mySidebar" class="sidebar">
                                     <a href="javascript:void(0)" class="closebtn" onclick="closeNav()" id="showMenu">×</a>
-                                    <a href="#">About</a>
+                                    <a href="about.html">About</a>
                                     <a href="#">Services</a>
                                     <a href="#">Clients</a>
-                                    <a href="#">Contact</a>
+                                    <a href="Contact/Contact/index.html">Contact</a>
                                 </div>
 
                             <div id="main">
