@@ -28,7 +28,7 @@
 					$data=mysqli_fetch_assoc($result);
 					$status = $data["Status"];
 					if($status == 0) {
-						echo "<script>alert('chua kich hoat')</script>";
+						echo "<script>alert('Check your email to active your account')</script>";
 					} else {
 						$_SESSION["Level"]=$data["Level"];
 						if ($_SESSION["Level"]==1 || $_SESSION["Level"]==2 ) {

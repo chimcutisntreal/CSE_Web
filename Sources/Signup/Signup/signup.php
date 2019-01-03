@@ -86,20 +86,34 @@
                      
                         //Recipients
                         $mail->CharSet= 'UTF-8';
-                        $mail->setFrom('bombeo922@gmail.com', 'Mailer');
-                        $mail->addAddress('chutrieuchinh98@gmail.com');     // Add a recipient
+                        $mail->setFrom('bombeo922@gmail.com', 'Do not reply');
+                        $mail->addAddress($inputEmail);     // Add a recipient
                         
                         
                         //Content
                         $mail->isHTML(true);                                  // Set email format to HTML
                         $mail->Subject = 'Activating Mail';
-                        $mail->Body    = "Click http://localhost/chimcut/ChiChin/CSE_Web/Sources/active.php?username=$inputName to active";
+                        $mail->Body    = "Welcome to Chin The Review. Please click this link http://localhost/chimcut/ChiChin/CSE_Web/Sources/active.php?username=$inputName to active your account";
                         $mail->send();
              
                     } catch (Exception $e) {
                         echo 'Message could not be sent. Mailer Error: ', $mail->ErrorInfo;
                     }      
                 }
+                echo "<script> 
+                Swal({
+                    title: 'Thanks for registering!!!',
+                    text: 'Please check your email for the activation steps',
+                    type: 'success',
+                    showCancelButton: false,
+                    confirmButtonColor: '#3085d6',
+                    confirmButtonText: 'Got it!!!'
+                    }).then((result) => {
+                    if (result.value) {
+                     
+                    }
+                })    
+          </script>";
              
             }
             mysqli_close($conn);
@@ -207,8 +221,8 @@
                                                 <option disabled="disabled" selected="selected" value="favorite">Choose Favorite</option>
                                                 <option value="Action">Action</option>
                                                 <option value="Horror">Horror</option>
-                                                <option value="Drama">Drama</option>
-                                                <option value="Tragedy">Tragedy</option>
+                                                <option value="Comedy">Comedy</option>
+                                                <option value="Fiction">Fiction</option>
                                                 <option value="Animation">Animation</option>
                                                 <option value="Romance">Romance</option>
                                             </select>
@@ -225,7 +239,7 @@
                             </div>
 
                             <div>
-                                <button class="btn btn--radius-2 btn--green" type="submit" name="btnRegister" onclick="Swal()">Register</button>
+                                <button class="btn btn--radius-2 btn--green" type="submit" name="btnRegister">Register</button>
                             </div>
                             <div class="subtxt">
                                 <p>Have already an account? <a class="txt1" style="text-decoration: none" href="../../../Sources/Login/Login/login.php">Sign-in
@@ -237,20 +251,7 @@
             </div>
         </div>
 
-      <script> 
-            Swal({
-                title: 'Thanks for registering!!!',
-                text: "Please check your email for the activation steps",
-                type: 'success',
-                showCancelButton: false,
-                confirmButtonColor: '#3085d6',
-                confirmButtonText: 'Got it!!!'
-                }).then((result) => {
-                if (result.value) {
-                 
-                }
-            })    
-      </script>
+    
         <!-- Jquery JS-->
         <script src="vendor/jquery/jquery.min.js"></script>
         <!-- Vendor JS-->
