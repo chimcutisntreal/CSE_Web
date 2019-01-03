@@ -23,10 +23,10 @@
 			$listGenre = $_POST['listGenre'];
 		}
 		
-		if(empty($_POST['image'])) {
+		if($_FILES['input-file-preview']['error']>0) {
 			$errorImage = 'Choose Image';
 		} else {
-			$image = $_POST['image'];
+			$image = $_FILES['input-file-preview']['name'];
 		}
 		if($_POST['txtReview']==NULL) {
 			$errorReview = 'Enter Review';
@@ -51,11 +51,13 @@
 					
 					
 					for ($i=0; $i<count($listGenre); $i++) {
-						$insertGenreOF = "INSERT INTO genre_of_f(ID_F, ID_G) VALUES('$data[ID_F]', '$listGenre[$i]')";
+						$insertGenreOF = "INSERT INTO child(ID_F, ID_G) VALUES('$data[ID_F]', '$listGenre[$i]')";
 						mysqli_query($conn,$insertGenreOF);
 					}
 				}
-			}	
+			}
+			move_uploaded_file($_FILES['input-file-preview']['tmp_name'],"../../preview_image/".$_FILES['input-file-preview']['name']);
+			
 		}
 	}
 		$conn = mysqli_connect('localhost','root','','chinthereview');
@@ -246,7 +248,7 @@
 						
 						<div class="panel-heading">Film Info</div>
 						<div class=panel-body>
-							<form action="review.php" method="POST">
+							<form action="review.php" method="POST" enctype="multipart/form-data">
 								<div class="row">
 									<div class="col-md-6">
 										<div class="form-group">

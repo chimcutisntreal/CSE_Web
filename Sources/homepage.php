@@ -11,13 +11,9 @@
         <link rel="stylesheet" href="style.css">
         <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU"
             crossorigin="anonymous">
-   
-      
-       
-        <link rel="stylesheet" href="bootstrap-4.1.3-dist/css/bootstrap.min.css">
+        <link rel="stylesheet" href="bootstrap-4.1.3-dist/css/bootstrap.css">
         <link rel="stylesheet" href="w3school/w3.css">
-        
-        
+ 
         <style>
             body {
                 background-image: url("stock/background.jpg");
@@ -189,60 +185,60 @@
                     <div class="row">
                         <div class="col-md-10">
                             <div class="row">
-                                <div class="col-md-4">
-                                    <div class="card">
-                                        <img class="card-img-top" alt="Bootstrap Thumbnail First" src="https://www.layoutit.com/img/people-q-c-600-200-1.jpg" />
-                                        <div class="card-block">
-                                            <h5 class="card-title">
-                                                Card title
-                                            </h5>
-                                            <p class="card-text">
-                                                Cras justo odio, dapibus ac facilisis in, egestas eget quam.
-                                                Donec id elit non mi porta gravida at eget metus.
-                                                Nullam id dolor id nibh ultricies vehicula ut id elit.
-                                            </p>
-                                            <p>
-                                                <a class="btn btn-primary" href="#">Action</a>
-                                            </p>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-md-4">
-                                    <div class="card">
-                                        <img class="card-img-top" alt="Bootstrap Thumbnail Second" src="https://www.layoutit.com/img/city-q-c-600-200-1.jpg" />
-                                        <div class="card-block">
-                                            <h5 class="card-title">
-                                                Card title
-                                            </h5>
-                                            <p class="card-text">
-                                                Cras justo odio, dapibus ac facilisis in, egestas eget quam.
-                                                Donec id elit non mi porta gravida at eget metus.
-                                                Nullam id dolor id nibh ultricies vehicula ut id elit.
-                                            </p>
-                                            <p>
-                                                <a class="btn btn-primary" href="#">Action</a>
-                                            </p>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-md-4">
-                                    <div class="card">
-                                        <img class="card-img-top" alt="Bootstrap Thumbnail Third" src="https://www.layoutit.com/img/sports-q-c-600-200-1.jpg" />
-                                        <div class="card-block">
-                                            <h5 class="card-title">
-                                                Card title
-                                            </h5>
-                                            <p class="card-text">
-                                                Cras justo odio, dapibus ac facilisis in, egestas eget quam.
-                                                Donec id elit non mi porta gravida at eget metus.
-                                                Nullam id dolor id nibh ultricies vehicula ut id elit.
-                                            </p>
-                                            <p>
-                                                <a class="btn btn-primary" href="#">Action</a>
-                                            </p>
-                                        </div>
-                                    </div>
-                                </div>
+                                <?php
+                                    $conn = mysqli_connect('localhost','root','','chinthereview');
+                                    if(!$conn) {
+                                        die('connection failed');
+                                    }
+                                    echo"<div class='col-md-4'>";
+                                        echo"<div class='card1'>";
+                                            $result = mysqli_query($conn,"SELECT Film,pre_image FROM film,genre,child WHERE film.ID_F=child.ID_F AND genre.ID_G=child.ID_G AND genre.Genre='Action' ORDER BY film.ID_F DESC;");
+                                            $data = mysqli_fetch_assoc($result);
+                                                
+                                            echo "<img class='preImage' alt='Preview Image' src='preview_image/$data[pre_image]' />";
+                                            echo "<div class='preImage-click'><button class='btn btn-success'>View more</button></div>";
+                                            echo "<div class='posGenre'><p style='font-size:25px;'><b>Action</b></p></div>";
+                                            echo "<div class='card-block'>
+                                                <h5 class='card-title' style='text-align:center'>
+                                                    <b>$data[Film]</b>
+                                                </h5>
+                                            </div>";
+                                        echo"</div>";   
+                                    echo"</div>";
+
+                                    echo"<div class='col-md-4'>";
+                                        echo"<div class='card1'>";
+                                            $result = mysqli_query($conn,"SELECT Film,pre_image FROM film,genre,child WHERE film.ID_F=child.ID_F AND genre.ID_G=child.ID_G AND genre.Genre='Romantic' ORDER BY film.ID_F DESC;");
+                                            $data = mysqli_fetch_assoc($result);
+                                                
+                                            echo "<img class='preImage' alt='Preview Image' src='preview_image/$data[pre_image]' />";
+                                            echo "<div class='preImage-click'><button class='btn btn-success'>View more</button></div>";
+                                            echo "<div class='posGenre'><p style='font-size:25px;'><b>Romantic</b></p></div>";
+                                            echo "<div class='card-block'>
+                                                <h5 class='card-title' style='text-align:center'>
+                                                    <b>$data[Film]</b>
+                                                </h5>
+                                            </div>";
+                                        echo"</div>";   
+                                    echo"</div>";
+
+                                    echo"<div class='col-md-4'>";
+                                        echo"<div class='card1'>";
+                                            $result = mysqli_query($conn,"SELECT Film,pre_image FROM film,genre,child WHERE film.ID_F=child.ID_F AND genre.ID_G=child.ID_G AND genre.Genre='Fiction' ORDER BY film.ID_F DESC;");
+                                            $data = mysqli_fetch_assoc($result);
+                                                
+                                            echo "<img class='preImage' alt='Preview Image' src='preview_image/$data[pre_image]' />";
+                                            echo "<div class='preImage-click'><button class='btn btn-success'>View more</button></div>";
+                                            echo "<div class='posGenre'><p style='font-size:25px;'><b>Fiction</b></p></div>";
+                                            echo "<div class='card-block'>
+                                                <h5 class='card-title' style='text-align:center'>
+                                                    <b>$data[Film]</b>
+                                                </h5>
+                                            </div>";
+                                        echo"</div>";   
+                                    echo"</div>";
+                                mysqli_close($conn);
+                                ?>
                             </div>
                         </div>
                         <div class="col-md-2">
@@ -263,60 +259,60 @@
                     <div class="row">
                         <div class="col-md-10">
                             <div class="row">
-                                <div class="col-md-4">
-                                    <div class="card">
-                                        <img class="card-img-top" alt="Bootstrap Thumbnail First" src="https://www.layoutit.com/img/people-q-c-600-200-1.jpg" />
-                                        <div class="card-block">
-                                            <h5 class="card-title">
-                                                Card title
-                                            </h5>
-                                            <p class="card-text">
-                                                Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id
-                                                elit non mi porta gravida at eget metus. Nullam id dolor id nibh
-                                                ultricies vehicula ut id elit.
-                                            </p>
-                                            <p>
-                                                <a class="btn btn-primary" href="#">Action</a>
-                                            </p>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-md-4">
-                                    <div class="card">
-                                        <img class="card-img-top" alt="Bootstrap Thumbnail Second" src="https://www.layoutit.com/img/city-q-c-600-200-1.jpg" />
-                                        <div class="card-block">
-                                            <h5 class="card-title">
-                                                Card title
-                                            </h5>
-                                            <p class="card-text">
-                                                Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id
-                                                elit non mi porta gravida at eget metus. Nullam id dolor id nibh
-                                                ultricies vehicula ut id elit.
-                                            </p>
-                                            <p>
-                                                <a class="btn btn-primary" href="#">Action</a>
-                                            </p>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-md-4">
-                                    <div class="card">
-                                        <img class="card-img-top" alt="Bootstrap Thumbnail Third" src="https://www.layoutit.com/img/sports-q-c-600-200-1.jpg" />
-                                        <div class="card-block">
-                                            <h5 class="card-title">
-                                                Card title
-                                            </h5>
-                                            <p class="card-text">
-                                                Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id
-                                                elit non mi porta gravida at eget metus. Nullam id dolor id nibh
-                                                ultricies vehicula ut id elit.
-                                            </p>
-                                            <p>
-                                                <a class="btn btn-primary" href="#">Action</a>
-                                            </p>
-                                        </div>
-                                    </div>
-                                </div>
+                                <?php
+                                    $conn = mysqli_connect('localhost','root','','chinthereview');
+                                    if(!$conn) {
+                                        die('connection failed');
+                                    }
+                                    echo"<div class='col-md-4'>";
+                                        echo"<div class='card1'>";
+                                            $result = mysqli_query($conn,"SELECT Film,pre_image FROM film,genre,child WHERE film.ID_F=child.ID_F AND genre.ID_G=child.ID_G AND genre.Genre='Comedy' ORDER BY film.ID_F DESC;");
+                                            $data = mysqli_fetch_assoc($result);
+                                                
+                                            echo "<img class='preImage' alt='Preview Image' src='preview_image/$data[pre_image]' />";
+                                            echo "<div class='preImage-click'><button class='btn btn-success'>View more</button></div>";
+                                            echo "<div class='posGenre'><p style='font-size:25px;'><b>Comedy</b></p></div>";
+                                            echo "<div class='card-block'>
+                                                <h5 class='card-title' style='text-align:center'>
+                                                    <b>$data[Film]</b>
+                                                </h5>
+                                            </div>";
+                                        echo"</div>";   
+                                    echo"</div>";
+
+                                    echo"<div class='col-md-4'>";
+                                        echo"<div class='card1'>";
+                                            $result = mysqli_query($conn,"SELECT Film,pre_image FROM film,genre,child WHERE film.ID_F=child.ID_F AND genre.ID_G=child.ID_G AND genre.Genre='Horror' ORDER BY film.ID_F DESC;");
+                                            $data = mysqli_fetch_assoc($result);
+                                                    
+                                            echo "<img class='preImage' alt='Preview Image' src='preview_image/$data[pre_image]' />";
+                                            echo "<div class='preImage-click'><button class='btn btn-success'>View more</button></div>";
+                                            echo "<div class='posGenre'><p style='font-size:25px;'><b>Horror</b></p></div>";
+                                            echo "<div class='card-block'>
+                                                <h5 class='card-title' style='text-align:center'>
+                                                    <b>$data[Film]</b>
+                                                </h5>
+                                            </div>";
+                                        echo"</div>";   
+                                    echo"</div>";
+
+                                    echo"<div class='col-md-4'>";
+                                        echo"<div class='card1'>";
+                                            $result = mysqli_query($conn,"SELECT Film,pre_image FROM film,genre,child WHERE film.ID_F=child.ID_F AND genre.ID_G=child.ID_G AND genre.Genre='Animation' ORDER BY film.ID_F DESC;");
+                                            $data = mysqli_fetch_assoc($result);
+                                                    
+                                            echo "<img class='preImage' alt='Preview Image' src='preview_image/$data[pre_image]' />";
+                                            echo "<div class='preImage-click'><button class='btn btn-success'>View more</button></div>";
+                                            echo "<div class='posGenre'><p style='font-size:25px;'><b>Animation</b></p></div>";
+                                            echo "<div class='card-block'>
+                                                <h5 class='card-title' style='text-align:center'>
+                                                    <b>$data[Film]</b>
+                                                </h5>
+                                            </div>";
+                                        echo"</div>";   
+                                    echo"</div>";
+                                    mysqli_close($conn);
+                                ?>
                             </div>
                         </div>
                         <div class="col-md-2">
