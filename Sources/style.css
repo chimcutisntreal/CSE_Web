@@ -157,7 +157,7 @@ a.Menu {
 }
 
 /* dropdown */
-.dropdown {
+/* .dropdown {
   position: relative;
   display: inline-block;
   color: white;
@@ -185,8 +185,37 @@ a.Menu {
 
 .dropdown:hover .dropdown-content {display: block;}
 
-.dropdown:hover .dropbtn {background-color: #6e856eea;}
+.dropdown:hover .dropbtn {background-color: #6e856eea;} */
 
+/* side genre*/
+.genre{
+  margin-top: 3%;
+}
+
+.genre li{
+  list-style: none;
+}
+
+.sideMenu{
+  color: white;
+  font-family: 'LVN';
+  font-size: 20px;
+}
+
+.sideMenu:hover{
+  background-color: #b1c4d1;
+  border: none;
+  color: white;
+  padding: 16px 32px;
+  text-align: center;
+  font-size: 22px;
+  margin: 4px 2px;
+  opacity: 0.6;
+  transition: 0.3s;
+  font-family: 'LVN';
+  font-style: bold;
+}
+/*end sidemenu*/
 
 .r1{
   background-image: url("./stock/background2.jpg");
