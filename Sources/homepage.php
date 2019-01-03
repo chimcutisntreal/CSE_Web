@@ -92,7 +92,7 @@
                                 <a class="Menu" style="text-decoration: none" href="issue.html">ISSUE ARCHIVE</a>
                                 <a class="Menu" style="text-decoration: none" href="sub.html">SUBSCRIBE</a>
                                 <a class="Menu" style="text-decoration: none" href="Genre/Genre/src/index.html">GENRE</a>
-                                <div class="dropdown">
+                                <!-- <div class="dropdown"> -->
                                 <!-- <p class="dropbtn">GENRE</p>
                                     <div class="dropdown-content">
                                         <a href="#" style="text-decoration: none">Romance</a>
