@@ -95,26 +95,15 @@
                         $mail->Subject = 'Activating Mail';
                         $mail->Body    = "Welcome to Chin The Review. Please click this link http://localhost/chimcut/ChiChin/CSE_Web/Sources/active.php?username=$inputName to active your account";
                         $mail->send();
-             
+                         
                     } catch (Exception $e) {
                         echo 'Message could not be sent. Mailer Error: ', $mail->ErrorInfo;
-                    }      
-                }
-                echo "<script> 
-                Swal({
-                    title: 'Thanks for registering!!!',
-                    text: 'Please check your email for the activation steps',
-                    type: 'success',
-                    showCancelButton: false,
-                    confirmButtonColor: '#3085d6',
-                    confirmButtonText: 'Got it!!!'
-                    }).then((result) => {
-                    if (result.value) {
-                     
                     }
-                })    
-          </script>";
-             
+                    // echo "<script>
+                    //     document.getElementById('#register').setAttribute('class','register');
+                    //     </script>"; 
+                }
+
             }
             mysqli_close($conn);
         }
@@ -239,7 +228,7 @@
                             </div>
 
                             <div>
-                                <button class="btn btn--radius-2 btn--green" type="submit" name="btnRegister">Register</button>
+                                <button class="btn btn--radius-2 btn--green" type="submit" name="btnRegister" id="register">Register</button>
                             </div>
                             <div class="subtxt">
                                 <p>Have already an account? <a class="txt1" style="text-decoration: none" href="../../../Sources/Login/Login/login.php">Sign-in
@@ -250,8 +239,17 @@
                 </div>
             </div>
         </div>
-
-    
+<!-- 
+        <script>
+        
+            $('.register').click(funtion(){
+                Swal(
+                'Thanks for registering!!!',
+                'Please check your email for the activation steps',
+                'success'
+            ); 
+            });  
+        </script> -->
         <!-- Jquery JS-->
         <script src="vendor/jquery/jquery.min.js"></script>
         <!-- Vendor JS-->

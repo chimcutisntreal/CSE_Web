@@ -146,6 +146,7 @@ a.Menu {
   border-bottom: 1px solid white;
   margin: auto;
   vertical-align: middle;
+  margin-bottom:5px;
 }
 .lineBot{
   width: 80%;

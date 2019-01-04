@@ -8,7 +8,7 @@
 	}
 	
 	$errorFilm = $errorGenre = $errorReview=$errorImage=NULL;
-
+	$id= $_GET["id"];
 	if(isset($_POST['btnSubmit'])) {
 		
 		if (empty($_POST['txtFilm'])) {
@@ -44,32 +44,35 @@
 			if(mysqli_num_rows($resultFE)>0) {
 				$filmExists = 'Film exists. Try again';
 			} else {
-				$insertFilm = "INSERT INTO film(Film,Review,Admin,pre_image) VALUES('$inputFilm','$review', '$_SESSION[Admin]','$image')";
-				if (mysqli_query($conn,$insertFilm)) {
-					$result = mysqli_query($conn,"SELECT ID_F from film where Film = '$inputFilm'");
-					$data = mysqli_fetch_assoc($result);
-					
-					
+				$updateFilm = "UPDATE film SET Film='$inputFilm', Review='$review',pre_image='$image' WHERE ID_F=$id";
+				if (mysqli_query($conn,$updateFilm)) {
+
 					for ($i=0; $i<count($listGenre); $i++) {
-						$insertGenreOF = "INSERT INTO child(ID_F, ID_G) VALUES('$data[ID_F]', '$listGenre[$i]')";
-						mysqli_query($conn,$insertGenreOF);
+						$updateGenreOF = "UPDATE child  SET ID_F=$id, ID_G='$listGenre[$i]' WHERE ID_F=$id";
+						mysqli_query($conn,$updateGenreOF);
 					}
+					header('location:review.php');
+					exit();
 				}
 			}
 			move_uploaded_file($_FILES['input-file-preview']['tmp_name'],"../../preview_image/".$_FILES['input-file-preview']['name']);
 			
 		}
 	}	
-		$id= $_GET["id"];
+		
 		$conn = mysqli_connect('localhost','root','','chinthereview');
 		if(!$conn) {
 			die('connection failed');
 		}
 
+		$getGenre= "SELECT ID_G,Genre FROM genre";
+		$resultG = mysqli_query($conn,$getGenre);
+
 		$editResult = mysqli_query($conn,"SELECT Film,pre_image,Review FROM film,genre  WHERE film.ID_F=$id");
 		$editData = mysqli_fetch_assoc($editResult);
 		mysqli_close($conn);
 	
+		
 	
 ?>
 
@@ -241,7 +244,7 @@
 						
 						<div class="panel-heading">Film Info</div>
 						<div class=panel-body>
-							<form action="review.php" method="POST" enctype="multipart/form-data">
+							<form action="edit_review.php?id=<?php echo $id;?>" method="POST" enctype="multipart/form-data">
 								<div class="row">
 									<div class="col-md-6">
 										<div class="form-group">

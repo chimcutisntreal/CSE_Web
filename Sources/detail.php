@@ -94,14 +94,14 @@
                     </div>
                     <div class="row">
                         <div class="col-md-2"></div>
-                        <div class="col-md-8 align-middle" style="background-color:#e0e0e0" align="justify">
+                        <div class="col-md-8 align-middle" style="background-color:#f7f7f7">
                             
                                 <?php
                                     $conn = mysqli_connect('localhost','root','','chinthereview');
                                     if(!$conn) {
                                         die('connection failed');
                                     }
-                                    $result=mysqli_query($conn,"SELECT film.ID_F,Review,child.ID_G FROM film,child WHERE film.ID_F=$id AND film.ID_F=child.ID_F;");
+                                    $result=mysqli_query($conn,"SELECT film.ID_F,Review,child.ID_G,Genre FROM film,child,genre WHERE genre.ID_G=child.ID_G AND film.ID_F=$id AND film.ID_F=child.ID_F;");
                                     $data=mysqli_fetch_assoc($result);
                                     echo"$data[Review]";
                                     mysqli_close($conn);
@@ -120,14 +120,14 @@
                             if(!$conn) {
                                 die('connection failed');
                             }
-                            $result2=mysqli_query($conn,"SELECT film.ID_F,Film,pre_image FROM  film,child WHERE child.ID_G =$data[ID_G] AND film.ID_F<$id AND film.ID_F=child.ID_F ORDER BY film.ID_F desc limit 3 ");
+                            $result2=mysqli_query($conn,"SELECT film.ID_F,Film,pre_image FROM  film,child WHERE child.ID_G =$data[ID_G] AND film.ID_F<$id AND film.ID_F=child.ID_F GROUP BY film.ID_F ORDER BY film.ID_F desc limit 3 ");
                             if(mysqli_num_rows($result2)!=0){
                                 while($data2=mysqli_fetch_assoc($result2)) {
                                     echo"<div class='col-md-4'>";
                                         echo"<div class='card1'>";
                                             echo "<img class='preImage' alt='Preview Image' src='preview_image/$data2[pre_image]' />";
                                             echo "<div class='preImage-click'><a class='btn btn-danger' href='detail.php?id=$data2[ID_F]'>View more</a></div>";
-                                            echo "<div class='posGenre'><p style='font-size:25px;color:white;'><b><em>Action</em></b></p></div>";
+                                            echo "<div class='posGenre'><p style='font-size:25px;color:white;'><b><em>$data[Genre]</em></b></p></div>";
                                             echo "<div class='card-block'>
                                                 <h5 class='card-title' style='text-align:center'>
                                                     <b>$data2[Film]</b>

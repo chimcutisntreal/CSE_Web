@@ -82,7 +82,7 @@
                                 <a class="Menu" style="text-decoration: none" href="WebO.html">WEB ONLY</a>
                                 <a class="Menu" style="text-decoration: none" href="issue.html">ISSUE ARCHIVE</a>
                                 <a class="Menu" style="text-decoration: none" href="sub.html">SUBSCRIBE</a>
-                                <a class="Menu" style="text-decoration: none" href="Genre/Genre/src/index.html">GENRE</a>
+                                <a class="Menu" style="text-decoration: none" href="Genre/Genre/src/index.php">GENRE</a>
                                 <a class="Menu" style="text-decoration: none" href="direc.html">DIRECTORS & CASTS</a>
                             </span>
                     </div>
@@ -98,19 +98,19 @@
                                 <div class="mySlides">
                                     <div class="numbertext"></div>
                                     <img src="stock/1.jpg" style="width:100%">
-                                    <div class="text">Caption Text</div>
+                                    
                                 </div>
 
                                 <div class="mySlides">
                                     <div class="numbertext"></div>
                                     <img src="stock/2.jpg" style="width:100%">
-                                    <div class="text">Caption Two</div>
+                                    
                                 </div>
 
                                 <div class="mySlides">
                                     <div class="numbertext"></div>
                                     <img src="stock/3.jpg" style="width:100%">
-                                    <div class="text">Caption Three</div>
+                                    
                                 </div>
 
                                 <a class="prev" onclick="plusSlides(-1)" style="color:white">&#10094;</a>
@@ -140,24 +140,11 @@
                         <img class='preImage' alt='Preview Image' src='preview_image/$data[pre_image]'/>
                         <div class='text1'>
                             <h2><b>$data[Film]</b></h2>
-                            <p><em>Bishop thought he had put his murderous past behind him, until his most formidable foe kidnaps the love of his life. Now he is forced to complete three impossible assassinations, and do what he does best: make them look like accidents.</em></p>
+                            <p><em><b>Aquaman</b> is a 2018 American superhero film based on the DC Comics character of the same ..... convention in Las Vegas, Nevada, with Momoa introducing a video of director James Wan displaying a concept art sizzle reel for the film. Later ...</em></p>
                         </div>
                     </div>";
                 echo"</div>";
-                echo"<div class='r3 row'>";
-                    echo"<div class='col-md-6'>
-                        <a href=#><img alt='SubPic' src='stock/4.jpg' /></a>
-                        <a href='#'>
-                            <div class='text2'>Sed iaculis posuere</div>
-                        </a>
-                    </div>";
-                    echo"<div class='col-md-6'>
-                        <a href=#><img alt='SubPic' src='stock/4.jpg' /></a>
-                        <a href='#'>
-                            <div class='text2'>Sed iaculis posuere</div>
-                        </a>
-                    </div>";
-                echo"</div>";
+                
                 mysqli_close($conn);
             ?>
             <div class="row">
